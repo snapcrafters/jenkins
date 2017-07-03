@@ -23,6 +23,8 @@ parts:
     jenkins:
         # https://forum.snapcraft.io/t/new-source-type-proposal-file/539
         plugin: nil
+        build-packages:
+            - curl
         install: |
             curl -sLO http://mirrors.jenkins.io/war-stable/2.60.1/jenkins.war
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
