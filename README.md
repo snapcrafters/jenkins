@@ -27,9 +27,7 @@ Set a custom configuration:
 
 ## Remaining tasks
 
-Snapcrafters ([join us]()) are working to land snap install documentation and
-the [snapcraft.yaml](https://github.com/snapcrafters/discord/blob/master/snap/snapcraft.yaml)
-upstream so Discord can authoritatively publish future releases.
+Snapcrafters ([join us](https://forum.snapcraft.io/t/join-snapcrafters/1325)) are working to land snap install documentation and the [snapcraft.yaml](https://github.com/snapcrafters/discord/blob/master/snap/snapcraft.yaml) upstream so Discord can authoritatively publish future releases.
 
   - [x] Fork the [Snapcrafters template]() repository to your own GitHub account
   - [x] Create a snap that runs in `devmode`
