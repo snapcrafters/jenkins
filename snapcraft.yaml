@@ -1,5 +1,5 @@
 name: jenkins
-version: '2.73.2'
+version: '2.138.1'
 summary: Jenkins automation server
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it
@@ -26,7 +26,7 @@ parts:
         build-packages:
             - curl
         install: |
-            curl -sLO http://mirrors.jenkins.io/war-stable/2.73.2/jenkins.war
+            curl -sLO http://mirrors.jenkins.io/war-stable/$SNAPCRAFT_VERSION/jenkins.war
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
     java:
         plugin: jdk
