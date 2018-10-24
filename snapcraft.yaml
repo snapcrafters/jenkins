@@ -1,5 +1,5 @@
 name: jenkins
-version: '2.138.1'
+version: '2.148'
 summary: Jenkins automation server
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it
