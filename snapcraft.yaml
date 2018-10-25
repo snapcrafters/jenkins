@@ -45,6 +45,7 @@ parts:
             - usr/lib/*/libfontconfig*
         install: |
             mkdir -p $SNAPCRAFT_PART_INSTALL/etc/fonts
+            rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/default-java/jre/lib/security/cacerts
             cp fonts.conf $SNAPCRAFT_PART_INSTALL/etc/fonts
     config:
         plugin: dump
