@@ -1,10 +1,10 @@
 name: jenkins
-version: '2.148'
 summary: Jenkins automation server
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it
   provides over 1000 plugins to support automating virtually anything, so that
   humans can actually spend their time doing things machines cannot.
+adopt-info: jenkins
 
 confinement: strict
 grade: stable
@@ -25,9 +25,14 @@ parts:
         plugin: nil
         build-packages:
             - curl
+            - unzip
         install: |
-            curl -sLO http://mirrors.jenkins.io/war-stable/$SNAPCRAFT_VERSION/jenkins.war
+            curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
+            unzip jenkins.war META-INF/MANIFEST.MF
+            VERSION=$(grep Jenkins-Version META-INF/MANIFEST.MF | cut -d' ' -f2 | tr -d '\r')
+            rm META-INF/MANIFEST.MF
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
+            snapcraftctl set-version "$VERSION"
     java:
         plugin: jdk
         stage-packages:
