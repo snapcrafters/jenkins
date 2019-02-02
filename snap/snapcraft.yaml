@@ -6,7 +6,7 @@ description: |
   humans can actually spend their time doing things machines cannot.
 adopt-info: jenkins
 
-confinement: strict
+confinement: classic
 grade: stable
 
 apps:
@@ -56,5 +56,3 @@ parts:
         plugin: dump
         prime:
             - jenkins-config
-
-# vim: set ai et sts=4 tabstop=4 sw=4:
