@@ -13,7 +13,7 @@ apps:
     jenkins:
         command: |
             env XDG_DATA_HOME=$SNAP/usr/share FONTCONFIG_PATH=$SNAP/etc/fonts
-            java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar
+            $SNAP/usr/lib/jvm/default-java/jre/bin/java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar
             $SNAP/jenkins.war
         daemon: simple
     config:
