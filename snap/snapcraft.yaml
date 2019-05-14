@@ -36,6 +36,7 @@ parts:
             unzip jenkins.war META-INF/MANIFEST.MF
             VERSION=$(grep Jenkins-Version META-INF/MANIFEST.MF | cut -d' ' -f2 | tr -d '\r')
             rm META-INF/MANIFEST.MF
+            rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-11-openjdk-amd64/lib/security/cacerts
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
             snapcraftctl set-version "$VERSION"
     config:
