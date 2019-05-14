@@ -1,5 +1,6 @@
 name: jenkins
 summary: Jenkins automation server
+base: core18
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it
   provides over 1000 plugins to support automating virtually anything, so that
@@ -11,47 +12,34 @@ grade: stable
 
 apps:
     jenkins:
+        environment:
+          XDG_DATA_HOME: "$SNAP/usr/share"
+          FONTCONFIG_PATH: "$SNAP/etc/fonts"
+          JAVA_HOME: "$SNAP/usr/lib/jvm/java-11-openjdk-amd64"
         command: |
-            env XDG_DATA_HOME=$SNAP/usr/share FONTCONFIG_PATH=$SNAP/etc/fonts
-            $SNAP/usr/lib/jvm/default-java/jre/bin/java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar
-            $SNAP/jenkins.war
+            usr/lib/jvm/java-11-openjdk-amd64/bin/java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar $SNAP/jenkins.war
         daemon: simple
     config:
         command: jenkins-config
+
 parts:
     jenkins:
-        # https://forum.snapcraft.io/t/new-source-type-proposal-file/539
         plugin: nil
+        stage-packages:
+            - fonts-dejavu-core
+            - openjdk-11-jre-headless
         build-packages:
             - curl
             - unzip
-        install: |
+        override-build: |
             curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
             unzip jenkins.war META-INF/MANIFEST.MF
             VERSION=$(grep Jenkins-Version META-INF/MANIFEST.MF | cut -d' ' -f2 | tr -d '\r')
             rm META-INF/MANIFEST.MF
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
             snapcraftctl set-version "$VERSION"
-    java:
-        plugin: jdk
-        stage-packages:
-            # Jenkins wants fonts.
-            - fonts-dejavu-core
-        prime:
-            - usr/lib/jvm/default-java/bin
-            - usr/lib/jvm/default-java/lib
-            - usr/lib/jvm/default-java/jre/bin
-            - usr/lib/jvm/default-java/jre/lib
-            - etc/java-*
-            # Jenkins wants fonts.
-            - etc/fonts/fonts.conf
-            - usr/share/fonts
-            - usr/lib/*/libfontconfig*
-        install: |
-            mkdir -p $SNAPCRAFT_PART_INSTALL/etc/fonts
-            rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/default-java/jre/lib/security/cacerts
-            cp fonts.conf $SNAPCRAFT_PART_INSTALL/etc/fonts
     config:
         plugin: dump
+        source: snap/local
         prime:
             - jenkins-config
