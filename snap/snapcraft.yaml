@@ -15,9 +15,9 @@ apps:
         environment:
           XDG_DATA_HOME: "$SNAP/usr/share"
           FONTCONFIG_PATH: "$SNAP/etc/fonts"
-          JAVA_HOME: "$SNAP/usr/lib/jvm/java-11-openjdk-amd64"
+          JAVA_HOME: "$SNAP/usr/lib/jvm/java-11-openjdk"
         command: |
-            usr/lib/jvm/java-11-openjdk-amd64/bin/java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar $SNAP/jenkins.war
+            usr/lib/jvm/java-11-openjdk/bin/java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar $SNAP/jenkins.war
         daemon: simple
     config:
         command: jenkins-config
@@ -28,6 +28,7 @@ parts:
         stage-packages:
             - fonts-dejavu-core
             - openjdk-11-jre-headless
+            - ca-certificates-java
         build-packages:
             - curl
             - unzip
@@ -36,7 +37,9 @@ parts:
             unzip jenkins.war META-INF/MANIFEST.MF
             VERSION=$(grep Jenkins-Version META-INF/MANIFEST.MF | cut -d' ' -f2 | tr -d '\r')
             rm META-INF/MANIFEST.MF
-            rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-11-openjdk-amd64/lib/security/cacerts
+            mv $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-11-openjdk-* $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-11-openjdk
+            #rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-11-openjdk/lib/security/cacerts
+            #cp $SNAPCRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-11-openjdk/lib/security/cacerts
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
             snapcraftctl set-version "$VERSION"
     config:
