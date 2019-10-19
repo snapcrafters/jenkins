@@ -27,6 +27,7 @@ parts:
         plugin: nil
         stage-packages:
             - fonts-dejavu-core
+            - libfontconfig1
             - openjdk-11-jre-headless
             - ca-certificates-java
         build-packages:
