@@ -16,6 +16,7 @@ apps:
           XDG_DATA_HOME: "$SNAP/usr/share"
           FONTCONFIG_PATH: "$SNAP/etc/fonts"
           JAVA_HOME: "$SNAP/usr/lib/jvm/java-11-openjdk"
+          LD_LIBRARY_PATH: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH"
         command: |
             usr/lib/jvm/java-11-openjdk/bin/java -DJENKINS_HOME="$SNAP_DATA" -Djava.awt.headless=true -jar $SNAP/jenkins.war
         daemon: simple
@@ -27,6 +28,7 @@ parts:
         plugin: nil
         stage-packages:
             - fonts-dejavu-core
+            - libfontconfig1
             - openjdk-11-jre-headless
             - ca-certificates-java
         build-packages:
