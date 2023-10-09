@@ -38,17 +38,17 @@ parts:
             - libnss3
             - ca-certificates-java
         
+        override-pull: |
+          snapcraftctl pull
+          snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
+        
         override-build: |
             curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
-            unzip jenkins.war META-INF/MANIFEST.MF
-            VERSION=$(grep Jenkins-Version META-INF/MANIFEST.MF | cut -d' ' -f2 | tr -d '\r')
-            rm META-INF/MANIFEST.MF
             mv $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
             rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
             cp /etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
             cp /etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
             mv jenkins.war $SNAPCRAFT_PART_INSTALL
-            snapcraftctl set-version "$VERSION"
                        
     config:
         plugin: dump
