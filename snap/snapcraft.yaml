@@ -34,7 +34,6 @@ parts:
             - ca-certificates-java
         build-packages:
             - curl
-            - unzip
             - libnss3
             - ca-certificates-java
         
