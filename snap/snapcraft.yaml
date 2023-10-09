@@ -18,8 +18,7 @@ apps:
           FONTCONFIG_PATH: "$SNAP/etc/fonts"
           JAVA_HOME: "$SNAP/usr/lib/jvm/java-17-openjdk"
           LD_LIBRARY_PATH: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
-        command: launch
-            
+        command: launch            
         daemon: simple
     config:
         command: jenkins-config
@@ -27,6 +26,7 @@ apps:
 parts:
     jenkins:
         plugin: nil
+        source: https://github.com/jenkinsci/jenkins.git # in lieu of the BGI trigger which didn't seem to work
         stage-packages:
             - fonts-dejavu-core
             - libfontconfig1
