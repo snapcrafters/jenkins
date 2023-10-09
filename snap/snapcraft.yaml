@@ -55,7 +55,5 @@ parts:
         source: snap/local
         prime:
             - jenkins-config
-    launch:
-        plugin: dump
-        source: snap/scripts
+            - launch
         
