@@ -12,16 +12,16 @@ confinement: classic
 grade: stable
 
 apps:
-    jenkins:
-        environment:
-          XDG_DATA_HOME: "$SNAP/usr/share"
-          FONTCONFIG_PATH: "$SNAP/etc/fonts"
-          JAVA_HOME: "$SNAP/usr/lib/jvm/java-17-openjdk"
-          LD_LIBRARY_PATH: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
-        command: launch            
-        daemon: simple
-    config:
-        command: jenkins-config
+  jenkins:
+    environment:
+      XDG_DATA_HOME: "$SNAP/usr/share"
+      FONTCONFIG_PATH: "$SNAP/etc/fonts"
+      JAVA_HOME: "$SNAP/usr/lib/jvm/java-17-openjdk"
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
+    command: launch            
+    daemon: simple
+  config:
+    command: jenkins-config
 
 parts:
     jenkins:
