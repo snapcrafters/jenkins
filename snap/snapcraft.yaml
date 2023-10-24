@@ -56,3 +56,4 @@ parts:
             - jenkins-config
             - launch
             - -usr/lib/jvm/java-17-openjdk-amd64/lib/security/blacklisted.certs
+            - -usr/lib/jvm/java-11-openjdk-amd64/lib/security/blacklisted.certs
