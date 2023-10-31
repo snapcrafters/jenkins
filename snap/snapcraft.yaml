@@ -38,16 +38,16 @@ parts:
             - ca-certificates-java
         
         override-pull: |
-          snapcraftctl pull
-          snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
+          craftctl pull
+          craftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
         
         override-build: |
             curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
-            mv $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
-            rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
-            cp /etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
-            cp /etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
-            mv jenkins.war $SNAPCRAFT_PART_INSTALL
+            mv $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
+            rm $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
+            cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
+            cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
+            mv jenkins.war $CRAFT_PART_INSTALL
                        
     config:
         plugin: dump
