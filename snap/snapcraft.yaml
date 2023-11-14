@@ -58,3 +58,14 @@ parts:
             - -usr/lib/jvm/java-17-openjdk-amd64/lib/security/blacklisted.certs
             - -usr/lib/jvm/java-11-openjdk-amd64/lib/security/blacklisted.certs
 
+    cleanup:
+      after: 
+        - jenkins
+      plugin: nil
+      build-snaps: 
+        - core22
+      override-prime: |
+        set -eux
+        for snap in "core22"; do  # List all content-snaps and base snaps you're using here
+          cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+        done
