@@ -7,7 +7,7 @@ description: |
   humans can actually spend their time doing things machines cannot.
 
 adopt-info: jenkins
-
+license: MIT
 confinement: classic
 grade: stable
 
