@@ -1,0 +1,33 @@
+name: 🔄 Sync version with upstream
+
+on:
+  # Runs at 10:00 UTC every day
+  schedule:
+    - cron:  '0 10 * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+  sync-version:
+    name: "Build on upstream commit"
+    environment: "Testing"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
+      - name: Check for modified files
+        id: git-check
+        run: |
+          MODIFIED=$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
+          echo "modified=$MODIFIED" >> $GITHUB_OUTPUT
+      - name: Commit latest release version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'Snapcrafters Bot'
+          git config --global user.email 'merlijn.sebrechts+snapcrafters-bot@gmail.com'
+          git commit -am "Automatic sync to latest release"
+          git push
+    outputs:
+      modified: ${{ steps.git-check.outputs.modified }}
