@@ -2,16 +2,17 @@ name: 🧪 Test snap can be built on x86_64
 
 on:
   push:
-    branches: [ master ]
+    branches: [ candidate ]
+    
   pull_request:
-    branches: [ master ]
+    branches: [ candidate ]
     
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x] # Are you are missing this specification?
+        node-version: [16.x]
         
     steps:
       - uses: actions/checkout@v2
@@ -23,6 +24,3 @@ jobs:
         with:
           snap: ${{ steps.build.outputs.snap }}
           isClassic: 'true'
-          # Plugs and Slots declarations to override default denial (requires store assertion to publish)
-          # plugs: ./plug-declaration.json
-          # slots: ./slot-declaration.json
