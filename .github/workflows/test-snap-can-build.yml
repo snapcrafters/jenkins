@@ -2,16 +2,16 @@ name: 🧪 Test snap can be built on x86_64
 
 on:
   push:
-    branches: [ testing ]
+    branches: [ candidate ]
   pull_request:
-    branches: [ testing ]
+    branches: [ candidate ]
     
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x] # Are you are missing this specification?
+        node-version: [16.x]
         
     steps:
       - uses: actions/checkout@v2

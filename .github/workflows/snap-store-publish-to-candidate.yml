@@ -107,7 +107,7 @@ jobs:
         uses: diddlesnaps/snapcraft-review-action@v1
         with:
           snap: ${{ steps.build.outputs.snap }}
-          isClassic: 'true'
+          isClassic: 'false'
 
       - name: Publish the built snap
         id: publish
