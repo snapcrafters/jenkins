@@ -1,7 +1,7 @@
 name: jenkins
 title: Jenkins
 summary: Jenkins automation server -  Build great things at any scale
-base: core20
+base: core22
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it provides over 1000 plugins to support automating virtually anything, so that humans can actually spend their time doing things machines cannot.
 
@@ -71,10 +71,9 @@ parts:
       - jenkins
     plugin: nil
     build-snaps: 
-      - core20
+      - core22
     override-prime: |
       set -eux
-      for snap in "core20"; do  # List all content-snaps and base snaps you're using here
+      for snap in "core22"; do  # List all content-snaps and base snaps you're using here
         cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
       done
-
