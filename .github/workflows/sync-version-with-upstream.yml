@@ -19,9 +19,8 @@ jobs:
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
       - name: Fetch release version
         run: |
-          DEB_API="https://discord.com/api/download?platform=linux&format=deb"
-          DEB_URL=$(curl -w "%{url_effective}\n" -I -L -s -S "${DEB_API}" -o /dev/null)
-          VERSION=$(echo "${DEB_URL}" | cut -d'/' -f6)
+          API="https://api.github.com/repos/jenkinsci/jenkins/releases/latest"
+          VERSION=$(curl -s "${API}" | grep -i name | awk 'FNR == 3 {print $2}' | cut -d '"' -f2)
           sed -i 's/^\(version: \).*$/\1'"$VERSION"'/' snap/snapcraft.yaml
       - name: Check for modified files
         id: git-check
