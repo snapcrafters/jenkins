@@ -24,5 +24,5 @@ jobs:
           update-script: |
           # Update the snapcraft.yaml to match upstream version
           API="https://api.github.com/repos/jenkinsci/jenkins/releases/latest"
-          VERSION=$(curl -s "${API}" | grep -i name | awk 'FNR == 3 {print $2}' | cut -d '"' -f2)
+          VERSION=$(curl -s "${API}" | grep -i name | awk 'FNR == 3 {print $2}' | cut -d ',' -f1)
           sed -i 's/^\(version: \).*$/\1'"$VERSION"'/' snap/snapcraft.yaml
