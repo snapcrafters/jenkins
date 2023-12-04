@@ -14,7 +14,7 @@ source-code: https://github.com//snapcrafters/jenkins
 license: MIT
 icon: jenkins.png
 #adopt-info: jenkins # ensure it works before totally removing
-version: 2.433
+version: '2.433'
 confinement: classic
 grade: stable
 
