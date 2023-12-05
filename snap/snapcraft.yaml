@@ -18,6 +18,11 @@ version: '2.433'
 confinement: classic
 grade: stable
 
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+
 apps:
   jenkins:
     environment:
