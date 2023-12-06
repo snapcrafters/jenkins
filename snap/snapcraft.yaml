@@ -31,7 +31,7 @@ apps:
       XDG_DATA_HOME: "$SNAP/usr/share"
       FONTCONFIG_PATH: "$SNAP/etc/fonts"
       JAVA_HOME: "$SNAP/usr/lib/jvm/java-17-openjdk"
-      LD_LIBRARY_PATH: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
     command: launch            
     daemon: simple
   config:
@@ -54,14 +54,14 @@ parts:
     
     override-build: |
       curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
-      mv $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
-      rm $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
-      cp /etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
-      cp /etc/ssl/certs/java/cacerts $SNAPCRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
-      mv jenkins.war $SNAPCRAFT_PART_INSTALL
+      mv $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
+      rm $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
+      cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
+      cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
+      mv jenkins.war $CRAFT_PART_INSTALL
     prime:
-      - -usr/lib/jvm/java-17-openjdk-amd64/lib/security/blacklisted.certs
-      - -usr/lib/jvm/java-11-openjdk-amd64/lib/security/blacklisted.certs
+      - -usr/lib/jvm/java-17-openjdk-*/lib/security/blacklisted.certs
+      - -usr/lib/jvm/java-11-openjdk-*/lib/security/blacklisted.certs
 
   config:
     plugin: dump
@@ -79,5 +79,5 @@ parts:
     override-prime: |
       set -eux
       for snap in "core22"; do  # List all content-snaps and base snaps you're using here
-        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$CRAFT_PRIME/{}" \;
       done
