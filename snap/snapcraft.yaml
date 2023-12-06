@@ -1,7 +1,7 @@
 name: jenkins
 title: Jenkins
 summary: Jenkins automation server -  Build great things at any scale
-base: core22
+
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it provides over 1000 plugins to support automating virtually anything, so that humans can actually spend their time doing things machines cannot.
 
@@ -12,9 +12,11 @@ contact: https://github.com//snapcrafters/jenkins/issues
 issues: https://github.com//snapcrafters/jenkins/issues
 source-code: https://github.com//snapcrafters/jenkins
 license: MIT
+adopt-info: jenkins
 icon: snap/local/jenkins.png
-#adopt-info: jenkins
 version: "2.435"
+
+base: core22
 confinement: classic
 grade: stable
 
