@@ -59,9 +59,11 @@ parts:
       cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
       cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
       mv jenkins.war $CRAFT_PART_INSTALL
-    prime:
-      - -usr/lib/jvm/java-17-openjdk-*/lib/security/blacklisted.certs
-      - -usr/lib/jvm/java-11-openjdk-*/lib/security/blacklisted.certs
+    
+    override-prime: |
+      snapcraftctl prime
+      rm -f usr/lib/jvm/java-17-openjdk-*/lib/security/blacklisted.certs
+      rm -f usr/lib/jvm/java-11-openjdk-*/lib/security/blacklisted.certs
 
   config:
     plugin: dump
