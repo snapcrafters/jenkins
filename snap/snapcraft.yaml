@@ -13,7 +13,7 @@ issues: https://github.com//snapcrafters/jenkins/issues
 source-code: https://github.com//snapcrafters/jenkins
 license: MIT
 icon: snap/jenkins.png
-version: "2.433"
+version: "2.435"
 confinement: classic
 grade: stable
 
@@ -38,6 +38,7 @@ parts:
   jenkins:
     plugin: nil
     source: https://github.com/jenkinsci/jenkins.git
+    source-tag: v$SNAPCRAFT_PROJECT_VERSION    
     stage-packages:
       - fonts-dejavu-core
       - libfontconfig1
