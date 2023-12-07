@@ -1,18 +1,17 @@
 name: jenkins
 title: Jenkins
 summary: Jenkins automation server -  Build great things at any scale
-
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it provides over 1000 plugins to support automating virtually anything, so that humans can actually spend their time doing things machines cannot.
 
   **Authors**
+
   This snap is maintained by the Snapcrafters community, and is not necessarily endorsed or officially maintained by the upstream developers.
 website: https://www.jenkins.io/
-contact: https://github.com//snapcrafters/jenkins/issues
-issues: https://github.com//snapcrafters/jenkins/issues
+contact: https://github.com/snapcrafters/jenkins/issues
+issues: https://github.com/snapcrafters/jenkins/issues
 source-code: https://github.com//snapcrafters/jenkins
 license: MIT
-adopt-info: jenkins
 icon: snap/local/jenkins.png
 version: "2.435"
 
@@ -31,7 +30,7 @@ apps:
       XDG_DATA_HOME: "$SNAP/usr/share"
       FONTCONFIG_PATH: "$SNAP/etc/fonts"
       JAVA_HOME: "$SNAP/usr/lib/jvm/java-17-openjdk"
-      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}"
     command: launch            
     daemon: simple
   config:
