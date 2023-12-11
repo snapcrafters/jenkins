@@ -78,3 +78,8 @@ Now that your git metadata has been updated you are ready to create a bugfix bra
 7. Once the pull request has been merged into the stable branch, a GitHub action will rebuild the snap using your changes and publish it to the [Snap Store](https://snapcraft.io/jenkins) into the `candidate` channel. After sufficient testing of the snap from the candidate channel, one of the maintainers or administrators will promote the snap to the stable branch in the Snap Store.
 
 ## Maintainers
+
+- [@merlijn-sebrechts](https://github.com/merlijn-sebrechts/)
+- [@kz6fittycent](https://github.com/kz6fittycent)
+## License
+The license of both the build files in this repository and Jenkins itself is the [MIT License](https://github.com/jenkinsci/jenkins/blob/master/LICENSE.txt)
