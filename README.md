@@ -17,6 +17,19 @@
 
 ```shell
 snap install jenkins --classic
+xdg-open http://localhost:8080
+```
+
+### Check the status:
+
+```
+systemctl status snap.jenkins.jenkins.service
+```
+
+### Set a custom configuration:
+
+```
+cat config.xml | sudo /snap/bin/jenkins.config
 ```
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
@@ -79,7 +92,8 @@ Now that your git metadata has been updated you are ready to create a bugfix bra
 
 ## Maintainers
 
-- [@merlijn-sebrechts](https://github.com/merlijn-sebrechts/)
 - [@kz6fittycent](https://github.com/kz6fittycent)
+
 ## License
+
 The license of both the build files in this repository and Jenkins itself is the [MIT License](https://github.com/jenkinsci/jenkins/blob/master/LICENSE.txt)
