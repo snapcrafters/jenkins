@@ -41,7 +41,6 @@ parts:
     plugin: nil
     source: https://github.com/jenkinsci/jenkins.git
     source-tag: jenkins-$SNAPCRAFT_PROJECT_VERSION  
-    source-branch: master  
     stage-packages:
       - fonts-dejavu-core
       - libfontconfig1
