@@ -28,9 +28,6 @@ jobs:
             VERSION=$(curl -s "${API}" | grep -i name | awk 'FNR == 3 {print $2}' | cut -d ',' -f1 | sed 's/"//g')
             CRAFT=$(grep -i version snap/snapcraft.yaml | awk '{print $2}' | sed 's/"//g')
             # Running checks here
-            if [[ "${VERSION}" < "${CRAFT}" ]]
-            then
-              exit
-            else
+            if [[ "${CRAFT}" < "${VERSION}" ]]; then
               sed -i 's/^\(version: \).*$/\1'"'$VERSION'"'/' snap/snapcraft.yaml 
             fi
