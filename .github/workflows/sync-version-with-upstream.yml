@@ -22,12 +22,6 @@ jobs:
         with:
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           update-script: |
-            #!/bin/bash
-            # Update the snapcraft.yaml to match upstream version
-            API="https://api.github.com/repos/jenkinsci/jenkins/releases/latest"
-            VERSION=$(curl -s "${API}" | grep -i name | awk 'FNR == 3 {print $2}' | cut -d ',' -f1 | sed 's/"//g')
-            CRAFT=$(grep -i version snap/snapcraft.yaml | awk '{print $2}' | sed 's/"//g')
-            # Running checks here
-            if [[ "${CRAFT}" < "${VERSION}" ]]; then
-              sed -i 's/^\(version: \).*$/\1'"'$VERSION'"'/' snap/snapcraft.yaml 
-            fi
+            # Grabbing latest release
+            VERSION=$(curl -sL https://api.github.com/repos/jenkinsci/jenkins/releases |  jq .[].tag_name -r | grep -v rc | sort -r | head -n 1 | cut -d "-" -f2)
+            sed -i 's/^\(version: \).*$/\1'"'$VERSION'"'/' snap/snapcraft.yaml 
