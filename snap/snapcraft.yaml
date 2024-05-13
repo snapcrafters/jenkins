@@ -14,7 +14,6 @@ source-code: https://github.com//snapcrafters/jenkins
 license: MIT
 icon: snap/local/jenkins.png
 version: '2.440'
-
 base: core22
 confinement: classic
 grade: stable
