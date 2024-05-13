@@ -1,5 +1,5 @@
-name: jenkins
-title: Jenkins
+name: jenkins-lts
+title: Jenkins-lts
 summary: Jenkins automation server -  Build great things at any scale
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it provides over 1000 plugins to support automating virtually anything, so that humans can actually spend their time doing things machines cannot.
@@ -13,7 +13,7 @@ issues: https://github.com/snapcrafters/jenkins/issues
 source-code: https://github.com//snapcrafters/jenkins
 license: MIT
 icon: snap/local/jenkins.png
-version: '2.435'
+version: '2.440'
 
 base: core22
 confinement: classic
@@ -25,7 +25,7 @@ architectures:
   - build-on: armhf
 
 apps:
-  jenkins:
+  jenkins-lts:
     environment:
       XDG_DATA_HOME: "$SNAP/usr/share"
       FONTCONFIG_PATH: "$SNAP/etc/fonts"
@@ -37,7 +37,7 @@ apps:
     command: jenkins-config
 
 parts:
-  jenkins:
+  jenkins-lts:
     plugin: nil
     source: https://github.com/jenkinsci/jenkins.git
     source-tag: jenkins-$SNAPCRAFT_PROJECT_VERSION
@@ -53,7 +53,7 @@ parts:
       - python3-requests #for API usage
     
     override-build: |
-      curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
+      curl -sLO https://mirrors.jenkins.io/war/2.440/jenkins.war
       mv $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
       rm $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
       cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
@@ -72,7 +72,7 @@ parts:
 
   cleanup:
     after: 
-      - jenkins
+      - jenkins-lts
     plugin: nil
     build-snaps: 
       - core22
