@@ -36,7 +36,7 @@ jobs:
         architecture: ${{ fromJSON(needs.get-architectures.outputs.architectures-list) }}
     steps:
       - name: 🚢 Release to latest/lts
-        uses: snapcrafters/ci/release-to-lts@main
+        uses: snapcrafters/ci/release-to-candidate@main
         with:
           architecture: ${{ matrix.architecture }}
           launchpad-token: ${{ secrets.LP_BUILD_SECRET }}
