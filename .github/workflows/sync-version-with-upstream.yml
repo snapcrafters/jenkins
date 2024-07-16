@@ -14,7 +14,7 @@ concurrency:
 jobs:
   sync:
     name: 🔄 Sync version with upstream
-    environment: "LTS Branch"
+    environment: "Candidate Branch"
     runs-on: ubuntu-latest
     steps:
       - name: 🔄 Sync version with upstream

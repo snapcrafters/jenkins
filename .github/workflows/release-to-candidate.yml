@@ -27,15 +27,15 @@ jobs:
         uses: snapcrafters/ci/get-architectures@main
 
   release:
-    name: 🚢 Release to latest/lts
+    name: 🚢 Release to latest/candidate
     needs: get-architectures
     runs-on: ubuntu-latest
-    environment: "LTS Branch"
+    environment: "Candidate Branch"
     strategy:
       matrix:
         architecture: ${{ fromJSON(needs.get-architectures.outputs.architectures-list) }}
     steps:
-      - name: 🚢 Release to latest/lts
+      - name: 🚢 Release to latest/candidate
         uses: snapcrafters/ci/release-to-candidate@main
         with:
           architecture: ${{ matrix.architecture }}
@@ -46,7 +46,7 @@ jobs:
   call-for-testing:
     name: 📣 Create call for testing
     needs: [release, get-architectures]
-    environment: "LTS Branch"
+    environment: "Candidate Branch"
     runs-on: ubuntu-latest
     outputs:
       issue-number: ${{ steps.issue.outputs.issue-number }}
@@ -57,3 +57,4 @@ jobs:
         with:
           architectures: ${{ needs.get-architectures.outputs.architectures }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          channel: lts/candidate
