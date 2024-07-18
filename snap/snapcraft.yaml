@@ -13,8 +13,7 @@ issues: https://github.com/snapcrafters/jenkins/issues
 source-code: https://github.com//snapcrafters/jenkins
 license: MIT
 icon: snap/local/jenkins.png
-version: '2.453'
-
+version: '2.440'
 base: core22
 confinement: classic
 grade: stable
@@ -50,9 +49,10 @@ parts:
       - curl
       - libnss3
       - ca-certificates-java
+      - python3-requests #for API usage
     
     override-build: |
-      curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
+      curl -sLO https://mirrors.jenkins.io/war/2.440/jenkins.war
       mv $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk-* $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk
       rm $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts
       cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/usr/lib/jvm/java-17-openjdk/lib/security/cacerts

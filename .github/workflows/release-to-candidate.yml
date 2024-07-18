@@ -1,9 +1,9 @@
 name: Release
 
 on:
-  # Run the workflow each time new commits are pushed to the candidate branch. 
+  # Run the workflow each time new commits are pushed to the lts branch. 
   push:
-    branches: [ "candidate" ]
+    branches: [ "lts" ]
   workflow_dispatch:
 
 concurrency:
@@ -57,3 +57,4 @@ jobs:
         with:
           architectures: ${{ needs.get-architectures.outputs.architectures }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          channel: lts/candidate
