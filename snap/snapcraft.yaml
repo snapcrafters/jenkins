@@ -1,5 +1,5 @@
-name: jenkins-lts
-title: Jenkins-lts
+name: jenkins
+title: Jenkins
 summary: Jenkins automation server -  Build great things at any scale
 description: |
   Jenkins is the leading open-source automation server. Built with Java, it provides over 1000 plugins to support automating virtually anything, so that humans can actually spend their time doing things machines cannot.
@@ -24,7 +24,7 @@ architectures:
   - build-on: armhf
 
 apps:
-  jenkins-lts:
+  jenkins:
     environment:
       XDG_DATA_HOME: "$SNAP/usr/share"
       FONTCONFIG_PATH: "$SNAP/etc/fonts"
@@ -36,7 +36,7 @@ apps:
     command: jenkins-config
 
 parts:
-  jenkins-lts:
+  jenkins:
     plugin: nil
     source: https://github.com/jenkinsci/jenkins.git
     source-tag: jenkins-$SNAPCRAFT_PROJECT_VERSION
@@ -71,7 +71,7 @@ parts:
 
   cleanup:
     after: 
-      - jenkins-lts
+      - jenkins
     plugin: nil
     build-snaps: 
       - core22
