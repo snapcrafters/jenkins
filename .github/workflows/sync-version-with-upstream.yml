@@ -34,6 +34,7 @@ jobs:
       - name: 🔄 Sync version with upstream
         uses: snapcrafters/ci/sync-version@main
         with:
+          branch: lts
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           update-script: |
             # Grabbing latest lts release
