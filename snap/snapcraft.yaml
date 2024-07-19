@@ -50,6 +50,7 @@ parts:
       - curl
       - libnss3
       - ca-certificates-java
+      - python3-requests #for API usage
     
     override-build: |
       curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war

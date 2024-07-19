@@ -25,3 +25,18 @@ jobs:
             # Grabbing latest release
             VERSION=$(curl -sL https://api.github.com/repos/jenkinsci/jenkins/releases |  jq .[].tag_name -r | grep -v rc | sort -r | head -n 1 | cut -d "-" -f2)
             sed -i 's/^\(version: \).*$/\1'"'$VERSION'"'/' snap/snapcraft.yaml 
+            
+  sync-lts:
+    name: 🔄 Sync version with upstream
+    environment: "Candidate Branch"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Sync version with upstream
+        uses: snapcrafters/ci/sync-version@main
+        with:
+          branch: lts
+          token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
+          update-script: |
+            # Grabbing latest lts release
+            VERSION=$(curl -sL https://api.github.com/repos/jenkinsci/jenkins/releases |  jq .[].tag_name -r | grep -v rc | sort -r | grep "2.440" | head -n1 | cut -d "-" -f2)
+            sed -i 's/^\(version: \).*$/\1'"'$VERSION'"'/' snap/snapcraft.yaml 
