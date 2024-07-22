@@ -30,7 +30,7 @@ jobs:
     name: 🚢 Release to latest/candidate
     needs: get-architectures
     runs-on: ubuntu-latest
-    environment: "Candidate Branch"
+    environment: "LTS Branch"
     strategy:
       matrix:
         architecture: ${{ fromJSON(needs.get-architectures.outputs.architectures-list) }}
@@ -46,7 +46,7 @@ jobs:
   call-for-testing:
     name: 📣 Create call for testing
     needs: [release, get-architectures]
-    environment: "Candidate Branch"
+    environment: "LTS Branch"
     runs-on: ubuntu-latest
     outputs:
       issue-number: ${{ steps.issue.outputs.issue-number }}
