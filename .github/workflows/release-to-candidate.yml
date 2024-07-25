@@ -59,3 +59,4 @@ jobs:
           architectures: ${{ needs.get-architectures.outputs.architectures }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           channel: lts/candidate
+          promotion-channel: lts/candidate
