@@ -17,6 +17,13 @@
 
 ```shell
 snap install jenkins --classic
+```
+or choose the LTS track:
+```
+snap install jenkins --channel=lts/stable --classic
+```
+Test and use the snap:
+```
 xdg-open http://localhost:8080
 ```
 
