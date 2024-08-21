@@ -13,7 +13,7 @@ issues: https://github.com/snapcrafters/jenkins/issues
 source-code: https://github.com//snapcrafters/jenkins
 license: MIT
 icon: snap/local/jenkins.png
-version: '2.472'
+version: '2.473'
 
 base: core22
 confinement: classic
