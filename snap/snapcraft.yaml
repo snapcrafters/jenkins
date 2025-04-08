@@ -60,6 +60,7 @@ parts:
       mv jenkins.war $CRAFT_PART_INSTALL
     prime:
       - -usr/lib/jvm/java-21-openjdk-*/lib/security/blacklisted.certs
+      - -usr/lib/jvm/java-11-openjdk-*/lib/security/blacklisted.certs  
 
   config:
     plugin: dump
