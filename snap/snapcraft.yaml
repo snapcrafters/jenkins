@@ -49,20 +49,21 @@ parts:
       - ca-certificates-java
       - libharfbuzz0b
     build-packages:
-      - curl
       - libnss3
       - ca-certificates-java
-    
     override-build: |
-      curl -sLO http://mirrors.jenkins.io/war/latest/jenkins.war
       mv $CRAFT_PART_INSTALL/usr/lib/jvm/java-21-openjdk-* $CRAFT_PART_INSTALL/usr/lib/jvm/java-21-openjdk
       rm $CRAFT_PART_INSTALL/usr/lib/jvm/java-21-openjdk/lib/security/cacerts
       cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/usr/lib/jvm/java-21-openjdk/lib/security/cacerts
       cp /etc/ssl/certs/java/cacerts $CRAFT_PART_INSTALL/etc/ssl/certs/java/cacerts
-      mv jenkins.war $CRAFT_PART_INSTALL
     prime:
       - -usr/lib/jvm/java-21-openjdk-*/lib/security/blacklisted.certs
       - -usr/lib/jvm/java-11-openjdk-*/lib/security/blacklisted.certs
+
+  jenkins-war:
+    plugin: dump
+    source: http://mirrors.jenkins.io/war/latest/jenkins.war
+    source-type: file
 
   config:
     plugin: dump
